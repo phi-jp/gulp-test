@@ -3,6 +3,7 @@
  */
 
 
+/*
 var gulp = require("gulp");
 var rename = require("gulp-coffee");
 var jade = require("gulp-jade");
@@ -10,6 +11,27 @@ var uglify = require("gulp-uglify");
 var coffee = require("gulp-coffee");
 var less = require("gulp-less");
 var webserver = require("gulp-webserver");
+*/
+
+var gulp = require("gulp");
+var pkg = require('./package.json');
+Object.keys(pkg.devDependencies).forEach(function(key) {
+  // check
+  if (/^gulp\-/.test(key) == false) return ;
+
+  // gulp-hoge-foo -> hogeFoo
+  var module = key
+    .replace("gulp-", '')
+    .replace(/\-(\w)/g, function(m, ch) { return ch.toUpperCase(); });
+
+  // required key as module
+  global[module] = require(key);
+
+  // log
+  var color = function(str, colorcode) { return colorcode + str + '\u001b[0m'; };
+  console.log("Required '"+color(key, '\u001b[36m')+"' as '" + color(module, '\u001b[35m') + "'");
+});
+
 
 gulp.task("default", ["server", "watch"]);
 gulp.task("build", ["script", "style", "html"]);
