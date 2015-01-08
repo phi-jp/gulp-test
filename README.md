@@ -7,15 +7,7 @@ $npm install -g gulp
 $npm install
 ```
 
-
-## build
-
-```bash
-$gulp build
-```
-
-
-## watach and livereload
+## run
 
 ```bash
 $gulp
