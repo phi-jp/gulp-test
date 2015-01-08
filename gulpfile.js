@@ -13,6 +13,7 @@ var less = require("gulp-less");
 var webserver = require("gulp-webserver");
 */
 
+/*
 var gulp = require("gulp");
 var pkg = require('./package.json');
 Object.keys(pkg.devDependencies).forEach(function(key) {
@@ -31,7 +32,12 @@ Object.keys(pkg.devDependencies).forEach(function(key) {
   var color = function(str, colorcode) { return colorcode + str + '\u001b[0m'; };
   console.log("Required '"+color(key, '\u001b[36m')+"' as '" + color(module, '\u001b[35m') + "'");
 });
+*/
 
+
+var gulp = require("gulp");
+var ghelper = require("gulp-helper");
+ghelper.require();
 
 gulp.task("default", ["server", "watch"]);
 gulp.task("build", ["script", "style", "html"]);
