@@ -3,12 +3,13 @@
  */
 
 var gulp = require("gulp");
-var concat = require("gulp-concat");
+var webserver = require("gulp-webserver");
 
 gulp.task("default", function() {
-  var files = ['./scripts/a.js', './scripts/b.js'];
-  gulp.src(files)
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest('./build'))
+  gulp.src('app')
+    .pipe(webserver({
+      livereload: true, // ライブリロードを有効に
+      open: true,       // タスク実行と同時にページを開く
+    }))
     ;
 });
